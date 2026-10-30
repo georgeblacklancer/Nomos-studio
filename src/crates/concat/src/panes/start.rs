@@ -529,7 +529,12 @@ impl StartPane {
             size: self.size as i32,
             rate: self.rate as i32,
             size_readout: format!("{width} x {height}").into(),
-            canvas: slint::Color::from_argb_u8(self.canvas[3], self.canvas[0], self.canvas[1], self.canvas[2]),
+            canvas: slint::Color::from_argb_u8(
+                self.canvas[3],
+                self.canvas[0],
+                self.canvas[1],
+                self.canvas[2],
+            ),
             custom_width: width as f32,
             custom_height: height as f32,
             custom_fps: fps_of(num, den) as f32,
@@ -565,7 +570,10 @@ mod tests {
             location_on("ios", desktop(), home),
             "/home/Documents/NOMOS Studio"
         );
-        assert_eq!(location_on("ios", None, home), "/home/Documents/NOMOS Studio");
+        assert_eq!(
+            location_on("ios", None, home),
+            "/home/Documents/NOMOS Studio"
+        );
         assert_eq!(location_on("android", None, home), "/home/NOMOS Studio");
         assert_eq!(
             PathBuf::from(location_on("macos", desktop(), home)),
