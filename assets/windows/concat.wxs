@@ -9,8 +9,8 @@
   Program Files, with a Start menu entry and a clean uninstall. Handed in:
 
     wix build -arch x64 -d Version=0.2.8 -d Root=C:\...\Concat
-              -d Stage=C:\...\stage\Concat-0.2.8-windows-x86_64
-              -o stage\Concat-0.2.8-windows-x86_64.msi assets\windows\concat.wxs
+              -d Stage=C:\...\stage\NOMOS-Studio-0.2.8-windows-x86_64
+              -o stage\NOMOS-Studio-0.2.8-windows-x86_64.msi assets\windows\concat.wxs
 
   Root is the repository: WiX resolves a source path against where it is
   run from, not against this file.
@@ -18,27 +18,27 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <!-- One upgrade code for the life of the product, so a newer .msi
        replaces an older one rather than sitting beside it. -->
-  <Package Name="Concat"
-           Manufacturer="Concat contributors"
+  <Package Name="NOMOS Studio"
+           Manufacturer="Grupo NOMOS"
            Version="$(var.Version)"
-           UpgradeCode="6C4D5D8E-9B2A-4F3B-8E1C-5A7D2B9F0C11"
+           UpgradeCode="F3E00171-61A0-4B7F-B994-EA3E34E99710"
            Scope="perMachine"
            Language="1033">
-    <MajorUpgrade DowngradeErrorMessage="A newer version of Concat is already installed." />
+    <MajorUpgrade DowngradeErrorMessage="Ya hay una versión más reciente de NOMOS Studio instalada." />
     <MediaTemplate EmbedCab="yes" />
 
     <Icon Id="concat.ico" SourceFile="$(var.Root)\assets\icons\concat.ico" />
     <Property Id="ARPPRODUCTICON" Value="concat.ico" />
-    <Property Id="ARPURLINFOABOUT" Value="https://github.com/jub0t/Concat" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/georgeblacklancer/nomos-studio" />
 
     <StandardDirectory Id="ProgramFiles64Folder">
-      <Directory Id="INSTALLFOLDER" Name="Concat" />
+      <Directory Id="INSTALLFOLDER" Name="NOMOS Studio" />
     </StandardDirectory>
     <StandardDirectory Id="ProgramMenuFolder">
-      <Directory Id="ShortcutFolder" Name="Concat" />
+      <Directory Id="ShortcutFolder" Name="NOMOS Studio" />
     </StandardDirectory>
 
-    <Feature Id="Main" Title="Concat" Level="1">
+    <Feature Id="Main" Title="NOMOS Studio" Level="1">
       <ComponentGroupRef Id="Program" />
       <ComponentRef Id="StartMenu" />
     </Feature>
@@ -48,9 +48,9 @@
       <Files Include="$(var.Stage)\**" />
     </ComponentGroup>
 
-    <Component Id="StartMenu" Directory="ShortcutFolder" Guid="2F0B7C51-6E4D-4A1B-9C3E-8D5F1A2B3C44">
+    <Component Id="StartMenu" Directory="ShortcutFolder" Guid="261558A7-61E6-4559-9281-EF01D23C635F">
       <Shortcut Id="StartMenuShortcut"
-                Name="Concat"
+                Name="NOMOS Studio"
                 Description="Video editor"
                 Target="[INSTALLFOLDER]concat.exe"
                 WorkingDirectory="INSTALLFOLDER"
@@ -59,14 +59,14 @@
            squares: it turns off Settings > General > Draw on the GPU,
            which that window hides. -->
       <Shortcut Id="SafeGraphicsShortcut"
-                Name="Concat (safe graphics)"
-                Description="Concat, drawn in software"
+                Name="NOMOS Studio (gráficos seguros)"
+                Description="NOMOS Studio, dibujado por software"
                 Target="[INSTALLFOLDER]concat.exe"
                 Arguments="--software"
                 WorkingDirectory="INSTALLFOLDER"
                 Icon="concat.ico" />
       <RemoveFolder Id="RemoveShortcutFolder" On="uninstall" />
-      <RegistryValue Root="HKCU" Key="Software\Concat" Name="StartMenu" Type="integer" Value="1" KeyPath="yes" />
+      <RegistryValue Root="HKCU" Key="Software\NOMOS Studio" Name="StartMenu" Type="integer" Value="1" KeyPath="yes" />
     </Component>
   </Package>
 </Wix>

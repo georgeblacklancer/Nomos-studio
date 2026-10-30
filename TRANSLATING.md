@@ -46,9 +46,9 @@ restart the app; the language appears in Settings.
 
 | Platform | Folder |
 |---|---|
-| macOS | `~/Library/Application Support/org.standalones.concat/locales/` |
-| Linux | `~/.config/org.standalones.concat/locales/` |
-| Windows | `%APPDATA%\org.standalones.concat\locales\` |
+| macOS | `~/Library/Application Support/mx.gruponomos.studio/locales/` |
+| Linux | `~/.config/mx.gruponomos.studio/locales/` |
+| Windows | `%APPDATA%\mx.gruponomos.studio\locales\` |
 
 A file there with the code of a language Concat ships lays its lines over
 the shipped ones, so a correction is a file holding only the lines that

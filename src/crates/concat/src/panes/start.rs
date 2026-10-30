@@ -92,10 +92,15 @@ pub fn shown<'a>(
     shown
 }
 
-/// The official site, which the guides and the developer docs are pages of.
+/// Concat's site, which the guides and the developer docs are pages of.
+/// NOMOS Studio is Concat with its own name and look, so Concat's guides
+/// describe it as they stand.
 const SITE: &str = "https://concat.standalones.org";
-/// The repository: the code, the issues, the releases.
-pub const REPOSITORY: &str = "https://github.com/jub0t/Concat";
+/// This build's repository: its code, its issues, its releases. The
+/// source the AGPL asks to be offered is here.
+pub const REPOSITORY: &str = "https://github.com/georgeblacklancer/nomos-studio";
+/// The project NOMOS Studio is a modified version of.
+pub const UPSTREAM: &str = "https://github.com/jub0t/Concat";
 
 /// Where each of the launch screen's links goes, by the name the screen
 /// sends. One table, so a moved page is one line here. Every address is a
@@ -106,10 +111,9 @@ pub fn link(name: &str) -> Option<String> {
     Some(match name {
         "guides" => format!("{SITE}/guides/"),
         "first-edit" => format!("{SITE}/guides/first-edit/"),
-        "report" => format!("{SITE}/guides/report-a-problem/"),
+        "report" => format!("{REPOSITORY}/issues"),
         "github" => REPOSITORY.to_owned(),
-        // The invite the README carries.
-        "discord" => "https://discord.gg/DVuPfpXfqP".to_owned(),
+        "upstream" => UPSTREAM.to_owned(),
         // The notes for the release this build is, under the tag the
         // release workflow pushes.
         "release-notes" => format!("{REPOSITORY}/releases/tag/v{}", env!("CARGO_PKG_VERSION")),
@@ -192,7 +196,7 @@ fn default_location() -> String {
     location
 }
 
-/// Where a new project goes on `os`: a Concat folder on the desktop. The
+/// Where a new project goes on `os`: a NOMOS Studio folder on the desktop. The
 /// desktop the system names, not `~/Desktop`: on Windows OneDrive often
 /// moves it, and on Linux it is called what the desktop's language calls
 /// it. A phone has no desk. An Android phone's projects live at the top of
@@ -202,11 +206,11 @@ fn default_location() -> String {
 /// new project failed with EPERM. https://github.com/jub0t/Concat/issues/299
 fn location_on(os: &str, desktop: Option<PathBuf>, home: impl Fn(&str) -> String) -> String {
     match os {
-        "android" => home("Concat"),
-        "ios" => home("Documents/Concat"),
+        "android" => home("NOMOS Studio"),
+        "ios" => home("Documents/NOMOS Studio"),
         _ => desktop
-            .map(|desktop| desktop.join("Concat").to_string_lossy().into_owned())
-            .unwrap_or_else(|| home("Desktop/Concat")),
+            .map(|desktop| desktop.join("NOMOS Studio").to_string_lossy().into_owned())
+            .unwrap_or_else(|| home("Desktop/NOMOS Studio")),
     }
 }
 
@@ -525,7 +529,12 @@ impl StartPane {
             size: self.size as i32,
             rate: self.rate as i32,
             size_readout: format!("{width} x {height}").into(),
-            canvas: slint::Color::from_argb_u8(self.canvas[3], self.canvas[0], self.canvas[1], self.canvas[2]),
+            canvas: slint::Color::from_argb_u8(
+                self.canvas[3],
+                self.canvas[0],
+                self.canvas[1],
+                self.canvas[2],
+            ),
             custom_width: width as f32,
             custom_height: height as f32,
             custom_fps: fps_of(num, den) as f32,
@@ -559,15 +568,21 @@ mod tests {
         let desktop = || Some(PathBuf::from("/desk"));
         assert_eq!(
             location_on("ios", desktop(), home),
-            "/home/Documents/Concat"
+            "/home/Documents/NOMOS Studio"
         );
-        assert_eq!(location_on("ios", None, home), "/home/Documents/Concat");
-        assert_eq!(location_on("android", None, home), "/home/Concat");
+        assert_eq!(
+            location_on("ios", None, home),
+            "/home/Documents/NOMOS Studio"
+        );
+        assert_eq!(location_on("android", None, home), "/home/NOMOS Studio");
         assert_eq!(
             PathBuf::from(location_on("macos", desktop(), home)),
-            Path::new("/desk").join("Concat")
+            Path::new("/desk").join("NOMOS Studio")
         );
-        assert_eq!(location_on("linux", None, home), "/home/Desktop/Concat");
+        assert_eq!(
+            location_on("linux", None, home),
+            "/home/Desktop/NOMOS Studio"
+        );
     }
 
     /// The next untitled name skips every folder already there, and starts
@@ -641,7 +656,7 @@ mod tests {
             "first-edit",
             "report",
             "github",
-            "discord",
+            "upstream",
             "release-notes",
         ] {
             assert!(

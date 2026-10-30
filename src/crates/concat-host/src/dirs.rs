@@ -22,11 +22,13 @@
 use std::path::{Path, PathBuf};
 
 /// The app identifier, which is also the folder name everywhere.
-pub const IDENTIFIER: &str = "org.standalones.concat";
+pub const IDENTIFIER: &str = "mx.gruponomos.studio";
 
-/// The identifier every build before 2026-10-26 used, whose folders
-/// [`adopt`] moves to [`IDENTIFIER`]'s on first start.
-const FORMER_IDENTIFIER: &str = "app.concat.editor";
+/// The identifier an earlier build of this app used, whose folders
+/// [`adopt`] moves to [`IDENTIFIER`]'s on first start. NOMOS Studio has
+/// never shipped under another one, so this names a folder no build made:
+/// Concat's own `app.concat.editor` belongs to Concat and is left alone.
+const FORMER_IDENTIFIER: &str = "mx.gruponomos.studio.former";
 
 /// The app's own directories on this machine.
 #[derive(Clone, Debug)]
@@ -203,7 +205,9 @@ fn link(target: &Path, at: &Path) -> std::io::Result<()> {
     if status.success() {
         Ok(())
     } else {
-        Err(std::io::Error::other(format!("mklink /J answered {status}")))
+        Err(std::io::Error::other(format!(
+            "mklink /J answered {status}"
+        )))
     }
 }
 

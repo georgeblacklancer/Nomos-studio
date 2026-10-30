@@ -108,6 +108,7 @@ export global Light {
     //
     // The same order as `dark.slint` and as `accent-names` in theme.slint.
     out property <[Accent]> accents: [
+        { accent: #80600f, hover: #6b500c, soft: #80600f2e, on: #ffffff },   // gold, NOMOS
         { accent: #4d7c0f, hover: #3f680b, soft: #4d7c0f2e, on: #ffffff },   // lime
         { accent: #1f66d1, hover: #1a55b0, soft: #1f66d12e, on: #ffffff },   // sky
         { accent: #7239e6, hover: #6030c8, soft: #7239e62e, on: #ffffff },   // violet
@@ -170,7 +171,7 @@ export global Light {
     /// the dark palette's 14% white is: the grid places a clip, it does not
     /// compete with one.
     out property <color> grid: #00000021;
-    // Lime, the palette's second accent, as a colour of its own; see the
+    // Lime, one of the palette's accents, as a colour of its own; see the
     // dark palette. Settings > Appearance can put any colour in its place.
     out property <color> playhead: #4d7c0f;
     // Drawn on the audio clip's own light ground, so it is a *darker* wash of

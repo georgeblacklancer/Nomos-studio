@@ -14,9 +14,9 @@ set -euo pipefail
 root="$(cd "$(dirname "$0")/.." && pwd)"
 out="$root/src/crates/concat/cards"
 case "$(uname -s)" in
-  Darwin) default="$HOME/Library/Application Support/org.standalones.concat/cards" ;;
-  Linux) default="${XDG_DATA_HOME:-$HOME/.local/share}/org.standalones.concat/cards" ;;
-  *) default="${LOCALAPPDATA:-}/org.standalones.concat/cards" ;;
+  Darwin) default="$HOME/Library/Application Support/mx.gruponomos.studio/cards" ;;
+  Linux) default="${XDG_DATA_HOME:-$HOME/.local/share}/mx.gruponomos.studio/cards" ;;
+  *) default="${LOCALAPPDATA:-}/mx.gruponomos.studio/cards" ;;
 esac
 from="${1:-$default}"
 [ -d "$from" ] || { echo "no card folder at $from" >&2; exit 1; }

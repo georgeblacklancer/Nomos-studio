@@ -31,7 +31,7 @@ pub struct Preferences {
     /// The accent, by the lower-cased name the theme lists it under —
     /// "lime", "sky", ... — or as "#rrggbb" for a colour picked by hand.
     /// `None`, or a name no longer on the list, is the first one, which is
-    /// Lime.
+    /// Gold.
     pub accent: Option<String>,
     /// The playhead's colour as "#rrggbb", when one was picked by hand in
     /// Settings > Appearance. `None` is the palette's own, which is lime.
@@ -50,7 +50,7 @@ pub struct Preferences {
     pub tts_model: Option<String>,
     /// The chosen Kokoro speaker id.
     pub tts_voice: Option<i32>,
-    /// The interface's locale code ("de", "pt-BR", ...); absent is English.
+    /// The interface's locale code ("de", "pt-BR", ...); absent is `i18n::DEFAULT`.
     pub locale: Option<String>,
     /// Package ids starred in the effect libraries, in no order. One list
     /// across all three shelves: a star is a fact about a package, and which

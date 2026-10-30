@@ -34,7 +34,7 @@ use crate::dirs::AppDirs;
 use crate::models;
 
 /// The repository the releases are read from.
-pub const REPO: &str = "jub0t/Concat";
+pub const REPO: &str = "georgeblacklancer/nomos-studio";
 
 /// The first release with a Version page: the earliest one a person can
 /// come back from, so the earliest one offered.
@@ -42,7 +42,8 @@ pub const FIRST_SWITCHABLE: Version = Version::new(0, 2, 5);
 
 /// GitHub's list of the repository's releases, newest first. A hundred
 /// covers years of releases at this pace.
-const RELEASES_URL: &str = "https://api.github.com/repos/jub0t/Concat/releases?per_page=100";
+const RELEASES_URL: &str =
+    "https://api.github.com/repos/georgeblacklancer/nomos-studio/releases?per_page=100";
 
 /// What a download that was stopped says.
 pub const CANCELLED: &str = "the download was cancelled";
@@ -669,7 +670,7 @@ fn detach(command: &mut Command) -> Result<(), String> {
 /// One GET, read whole as text. GitHub wants a user agent and says so with
 /// a 403 otherwise.
 fn get_text(url: &str) -> Result<String, String> {
-    let agent = format!("Concat/{}", Version::current());
+    let agent = format!("NOMOS-Studio/{}", Version::current());
     let response = crate::net::get(
         url,
         std::time::Duration::from_secs(20),
@@ -868,7 +869,7 @@ mod tests {
         }
         assert_eq!(
             manifest_url("v0.2.6"),
-            "https://github.com/jub0t/Concat/releases/download/v0.2.6/manifest.json"
+            "https://github.com/georgeblacklancer/nomos-studio/releases/download/v0.2.6/manifest.json"
         );
     }
 
