@@ -386,9 +386,12 @@ mod tests {
             .and_then(|listener| listener.local_addr())
             .expect("a port")
             .port();
+        // Windows answers a refused connection only after retrying the
+        // SYN for about two seconds, so a two-second connect timeout read
+        // it as a timeout on every Windows runner. Ten leaves room.
         let failure = get(
             &format!("http://127.0.0.1:{port}/model.bin"),
-            Duration::from_secs(2),
+            Duration::from_secs(10),
             Duration::from_secs(2),
             Trust::System,
             &|request| request,
