@@ -579,7 +579,10 @@ mod tests {
             PathBuf::from(location_on("macos", desktop(), home)),
             Path::new("/desk").join("NOMOS Studio")
         );
-        assert_eq!(location_on("linux", None, home), "/home/Desktop/Concat");
+        assert_eq!(
+            location_on("linux", None, home),
+            "/home/Desktop/NOMOS Studio"
+        );
     }
 
     /// The next untitled name skips every folder already there, and starts
