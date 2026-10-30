@@ -674,7 +674,7 @@ mod tests {
     fn upscale_speed() {
         let Some(home) = std::env::var_os("HOME") else { return };
         let support = std::path::Path::new(&home).join("Library/Application Support");
-        let Some(bytes) = ["org.standalones.concat", "app.concat.editor"]
+        let Some(bytes) = ["mx.gruponomos.studio", "app.concat.editor"]
             .iter()
             .map(|id| support.join(id).join("cutout-models/realesr-general-x4v3.onnx"))
             .find_map(|file| std::fs::read(file).ok())

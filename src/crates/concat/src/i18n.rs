@@ -48,8 +48,12 @@ pub struct Language {
     pub name: String,
 }
 
-/// The code the interface starts in, and the language of the keys.
+/// The language of the keys, and the one a line a locale leaves out reads in.
 pub const ENGLISH: &str = "en";
+
+/// The language the interface speaks until one is picked in Settings.
+/// NOMOS Studio is made for Spanish speakers first.
+pub const DEFAULT: &str = "es";
 
 /// The locales the app ships, as `(code, file)`. `en.json` is the
 /// inventory - every key, with its English - which is what a translator

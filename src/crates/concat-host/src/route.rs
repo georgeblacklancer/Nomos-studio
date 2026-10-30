@@ -456,7 +456,7 @@ mod windows {
     /// What the proxy script at `script` says for `url`: `Some(None)` for
     /// directly, `None` when it could not be fetched or run.
     fn run_script(url: &str, script: &str) -> Option<Option<String>> {
-        let agent = wide("Concat");
+        let agent = wide("NOMOS Studio");
         // SAFETY: plain WinHTTP calls on a session opened and closed here;
         // every pointer passed outlives the call it is passed to.
         unsafe {
