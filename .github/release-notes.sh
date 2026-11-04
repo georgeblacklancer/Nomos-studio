@@ -86,7 +86,7 @@ if [ "${WINDOWS_SIGNED:-true}" = false ]; then
   caveats+=("- **Windows:** this release is not code-signed yet. SmartScreen asks before it runs: **More info** › **Run anyway**. Where Smart App Control is on, Windows refuses unsigned programs; see the [code signing policy](https://github.com/jub0t/concat/blob/main/CODE_SIGNING.md).")
 fi
 if [ "${ANDROID_STARTED:-true}" = false ]; then
-  caveats+=("- **Android:** no automated check has started this APK: CI's emulators run x86_64 and it is built for arm64. If it does not open on your phone, [say so](https://github.com/jub0t/concat/issues).")
+  caveats+=("- **Android:** no automated check has started this APK: CI's emulators run x86_64 and it is built for arm64. If it does not open on your phone, [say so](https://github.com/georgeblacklancer/Nomos-studio/issues).")
 fi
 if [ "${#caveats[@]}" -gt 0 ]; then
   echo "### Before you install"
