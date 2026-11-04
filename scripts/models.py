@@ -37,6 +37,10 @@ CRATES = ROOT / "src" / "crates"
 # The repository the mirror lives on, and the engine constant that must
 # agree with this file about which release holds it.
 REPO = "jub0t/Concat"
+# The repository this build's own releases are published on: the
+# updater's manifest points the app bundles here, while the models stay
+# on the mirror above.
+APP_REPO = "georgeblacklancer/Nomos-studio"
 HOST_MODELS = CRATES / "concat-host" / "src" / "models.rs"
 
 # Where each family's table lives in the engine, for --check.
@@ -110,8 +114,8 @@ def hf_mirror(url: str) -> str | None:
     return None
 
 
-def asset_url(release: str, file: str) -> str:
-    return f"https://github.com/{REPO}/releases/download/{release}/{file}"
+def asset_url(release: str, file: str, repo: str = REPO) -> str:
+    return f"https://github.com/{repo}/releases/download/{release}/{file}"
 
 
 def engine_id(model: dict) -> str:
@@ -335,7 +339,7 @@ def release_manifest(version: str, tag: str, bundles: pathlib.Path | None) -> di
         file = stem.format(v=version)
         entry = {
             "file": file,
-            "url": asset_url(tag, file),
+            "url": asset_url(tag, file, APP_REPO),
         }
         if bundles is not None:
             path = bundles / file
